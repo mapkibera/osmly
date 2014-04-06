@@ -127,7 +127,7 @@ osmly.map = function() {
                     if (feature.geometry.type == 'Point' && osmly.mode.now == 'import') {
                         popup += '<li class="merge"\
                             data-layer-id="' + index + '"\
-                            data-tags=\'' + JSON.stringify(feature.properties) + '\'\
+                            data-tags=\'' + JSON.stringify(feature.properties).replace(/'/g,"&apos;") + '\'\
                             data-lat-lng=\'' + feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0] + '\'\
                             style="\
                             margin-top: 10px;\
