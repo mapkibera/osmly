@@ -128,6 +128,7 @@ osmly.map = function() {
                         popup += '<li class="merge"\
                             data-layer-id="' + index + '"\
                             data-tags=\'' + JSON.stringify(feature.properties) + '\'\
+                            data-lat-lng=\'' + feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0] + '\'\
                             style="\
                             margin-top: 10px;\
                             text-align: center;\

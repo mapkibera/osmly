@@ -41,6 +41,7 @@ osmly.import = (function() {
             // not sure why I can't do $('li').on...
             imp.mergeTags = JSON.parse(this.getAttribute('data-tags'));
             imp.mergeLayer = this.getAttribute('data-layer-id');
+            imp.mergeLatLng = this.getAttribute('data-lat-lng');
             var conflicts = compareTags(imp.mergeTags);
             if (conflicts) {
                 conflictModal(conflicts);
@@ -437,6 +438,12 @@ osmly.import = (function() {
             }
         }
         populateTags(tags);
+        osmly.map.featureLayer.eachLayer(function(layer) {
+          if (layer instanceof L.Marker && imp.mergeLatLng) {
+            latlng = imp.mergeLatLng.split(',');
+            layer.setLatLng(L.latLng(latlng[0],latlng[1]));
+          }
+        });
         CSSModal.close();
         osmly.map.eachLayer(function(layer) {
             if (typeof layer.feature !== 'undefined' &&
