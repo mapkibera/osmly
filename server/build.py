@@ -48,8 +48,8 @@ def isEditable(geo):
     return ''
 
 def get_bounds(geo):
-    if geo.geom_type == '':
-        bounds = geo.buffer(0.0015).bounds #TODO make great circle distance
+    if geo.geom_type == 'Point':
+        bounds = geo.buffer(0.0025).bounds #TODO make great circle distance
     else:
         bounds = geo.bounds
     return [

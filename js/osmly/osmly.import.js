@@ -339,6 +339,7 @@ osmly.import = (function() {
     };
 
     function submitToOSM() {
+
         var id = token(osmly.settings.db + 'changeset_id');
 
         $('#changeset-link').html('<a href="' + osmly.settings.writeApi +
@@ -436,6 +437,10 @@ osmly.import = (function() {
             if (tag.split('osm_').length === 1 || osmly.settings.merge_preserve) {
                 tags[tag] = imp.mergeTags[tag];
             }
+        }
+        var importTags = osmly.import.tags();
+        for (var tag in importTags) {
+            tags[ tag ] = importTags[ tag ];
         }
         populateTags(tags);
         osmly.map.featureLayer.eachLayer(function(layer) {

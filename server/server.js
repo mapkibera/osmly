@@ -69,7 +69,7 @@ function get(args, response) {
             });
         } else {
             // random next available
-            db.get('SELECT geo FROM osmly WHERE problem = "" AND submit = "" ORDER BY RANDOM() LIMIT 1', function(err, row) {
+            db.get('SELECT geo FROM osmly WHERE problem = "" AND submit = "" AND user = "" ORDER BY RANDOM() LIMIT 1', function(err, row) {
                 if (err) return respond(false, response, err);
                 respond(JSON.stringify(row.geo), response);
             });
@@ -88,7 +88,7 @@ function post(args, data, response) {
                         $time: args.time,
                         $id: args.id
                     });
-                    respond(JSON.stringify({id:args.id}), reponse);
+                    respond(JSON.stringify({id:args.id}), response);
                     break;
                 case 'remote':
                     db.run('UPDATE osmly SET remote = $remote WHERE id = $id', {

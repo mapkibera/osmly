@@ -46,18 +46,22 @@
         */
 
             var config = {
-                title: 'title',
-                instructions: 'random',
-                db: 'http://localhost:8000/?db=LA',
-                usePropertyAsTag: ['NAME'],
+                title: 'Kibera Schools',
+                instructions: 'A school location for OpenDataKE will be shown<br/>Find a match from nearby schools in OpenStreetMap<br/>Merge, and make sure to copy/paste the "official_name" tag',
+                db: 'http://localhost:8000/?db=schools',
+                usePropertyAsTag: ['official_name'],
                 context: {
-                    'leisure': ['park', 'playground'],
-                    'amenity': ['school']
+                    'amenity': ['school','kindergarten']
                 },
                 problems: [
-                    'idk',
-                    'nothing'
+                    'not in OSM',
+                    'ambiguous in OSM',
+                    'already fixed in OSM'
                 ],
+                merge_preserve : true,
+                writeApi: 'http://www.openstreetmap.org',
+                oauth_secret: 'xxeNocVjYUiwD4ujGvQwV5EZGTAhTqvewXBJBYJ4',
+                consumerKey: 'nIvuB3RIg3r9rH3EzETPzO1PfA05dWvBiC1B4Ggv'
             };
 
             osmly.go(config);
